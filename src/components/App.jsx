@@ -41,12 +41,20 @@ class App extends Component{
     this.setState({ filter });
   }
 
+  // getVisibleContacts = () => {
+  //   const { contacts, filter } = this.state;
+
+  //   return contacts.filter((contact)=> contact.name.toLowerCase().includes(filter.toLowerCase()))
+
+  // }
+
   getVisibleContacts = () => {
-    const { contacts, filter } = this.state;
-
-    return contacts.filter((contact)=> contact.name.toLowerCase().includes(filter.toLowerCase()))
-
-  }
+    return this.state.contacts.filter(el =>
+      el.name
+        .toLocaleLowerCase()
+        .includes(this.state.filter.toLocaleLowerCase())
+    );
+  };
 
 
  
