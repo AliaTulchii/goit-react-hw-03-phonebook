@@ -49,10 +49,10 @@ class App extends Component{
   // }
 
   getVisibleContacts = () => {
-    return this.state.contacts.filter(el =>
-      el.name
-        .toLocaleLowerCase()
-        .includes(this.state.filter.toLocaleLowerCase())
+    const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
 
