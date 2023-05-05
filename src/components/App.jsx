@@ -56,6 +56,17 @@ class App extends Component{
     );
   };
 
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    if (contacts !== null) {
+      this.setState({ contacts: JSON.parse(contacts) });
+    } else {
+      this.setState({ contacts: this.state.contacts });
+    }
+    // const parsedContacts = JSON.parse(contacts);
+
+    // this.setState({ contacts: parsedContacts });
+ }
 
  
   componentDidUpdate(prevProps,prevState) {
@@ -67,13 +78,7 @@ class App extends Component{
     }
   }
 
-  componentDidMount() {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-
-    this.setState({ contacts: parsedContacts });
- }
-
+ 
 
   render() {
     const visibleContacts = this.getVisibleContacts();
