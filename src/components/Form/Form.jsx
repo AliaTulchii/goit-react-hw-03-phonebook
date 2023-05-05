@@ -1,7 +1,6 @@
 import { Component } from "react";
 import css from './Form.module.css'
 import shortid from "shortid";
-import { FaUserPlus } from 'react-icons/fa'
 
 
 class Form extends Component {
@@ -89,7 +88,7 @@ class Form extends Component {
                     />
                 </label>
                 
-                <button type="submit" className={css.Form__button}> <FaUserPlus className={css.icon_user} /> Add contact</button>
+                <button type="submit" className={css.Form__button}> Add contact</button>
             </form>
         )
     }

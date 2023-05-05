@@ -37,7 +37,7 @@ ContactList.propTypes = {
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            number: PropTypes.string.isRequired,
+            number: PropTypes.number.isRequired,
             avatar: PropTypes.string.isRequired,
         })
     )

@@ -48,24 +48,6 @@ class App extends Component{
 
   }
 
-  componentDidMount() {
-    
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
-
-    console.log(parsedContacts);
-    this.setState({ contacts: parsedContacts });
-  }
-
-  componentDidUpdate(prevProps,prevState) {
-    console.log('App did update');
-
-    if (this.state.contacts !== prevState.contacts) {
-      console.log('Contacts field is update ');
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
-
 
   render() {
     const visibleContacts = this.getVisibleContacts();
