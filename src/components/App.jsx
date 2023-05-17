@@ -4,6 +4,14 @@ import ContactList from './ContactsList/ContactsList';
 import Filter from './Filter/Filter';
 import css from './App.module.css'
 
+
+const initialState = [
+  { id: 'id-1', name: 'Jerry Simpson', number: '459-12-56', avatar: "https://randomuser.me/api/portraits/men/52.jpg" },
+  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12', avatar: "https://randomuser.me/api/portraits/women/22.jpg" },
+  { id: 'id-3', name: 'Eden Clements', number: '645-17-79', avatar: "https://randomuser.me/api/portraits/men/32.jpg" },
+  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26', avatar: "https://randomuser.me/api/portraits/women/12.jpg" },
+];
+
 class App extends Component{
   state = {
     contacts: [
@@ -20,11 +28,9 @@ class App extends Component{
     if (contacts !== null) {
       this.setState({ contacts: JSON.parse(contacts) });
     } else {
-      this.setState({ contacts: this.state.contacts });
+      this.setState({ contacts: initialState });
     }
-    // const parsedContacts = JSON.parse(contacts);
-
-    // this.setState({ contacts: parsedContacts });
+    
  }
 
  
@@ -37,11 +43,25 @@ class App extends Component{
     }
   }
 
-  handleAddContact = (newContact) => {
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts, newContact],
-    }))
+  handleAddContact = ({name, number}) => {
+    const person = {
+      name,
+      number,
+    }
+
+    const exist = this.state.contacts.find(({ name }) => name === person.name);
+
+    if (exist) {
+      alert(`${person.name} is already in contacts list`);
+      return;
+    }
+    
+    this.setState(prevState => ({
+      contacts: [person, ...prevState.contacts],
+    }));
   }
+
+  
 
   handleCheckContact = (name) => {
     const { contacts } = this.state;
@@ -61,12 +81,7 @@ class App extends Component{
     this.setState({ filter });
   }
 
-  // getVisibleContacts = () => {
-  //   const { contacts, filter } = this.state;
-
-  //   return contacts.filter((contact)=> contact.name.toLowerCase().includes(filter.toLowerCase()))
-
-  // }
+ 
 
   getVisibleContacts = () => {
     const { contacts, filter } = this.state;
